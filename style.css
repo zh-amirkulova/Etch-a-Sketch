@@ -1,0 +1,16 @@
+body,
+.conteiner {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
+}
+.conteiner {
+
+    flex-wrap: wrap;
+    width: 768px;
+    height: 768px;
+    background-color: antiquewhite;
+    color: rgba(137, 81, 41, 0.3);
+    
+}
