@@ -10,7 +10,7 @@ function grid(size=23){
         divGrid.style.cssText = `
             width: ${529/size}px;
             height: ${529/size}px;
-            border: 1px solid rgba(137, 81, 41, 0.05);
+            border: 1px solid rgba(137, 81, 41, 0.01);
             box-sizing: border-box;
         `;
         divConteiner.appendChild(divGrid);
@@ -66,6 +66,20 @@ function newGrid(newSize){
     });
 }
 
+
+const btnRandomColor = document.querySelector('.randomColor');
+btnRandomColor.addEventListener('click', () => {
+    const hoverRandom = document.querySelector('div');
+    const randomRgbColor = () => {
+        const red = Math.floor(Math.random() * 256) // Random number between 0-255
+        const green = Math.floor(Math.random() * 256)
+        const blue = Math.floor(Math.random() * 256)
+        return `rgb(${red}, ${green}, ${blue})`
+    }
+    hoverRandom.addEventListener('mouseover', function(e){
+    e.target.style.backgroundColor = randomRgbColor();
+    });
+});
 
 
  
