@@ -1,8 +1,12 @@
 const divConteiner = document.querySelector('.conteiner');
+const btnSizePixel = document.querySelector('.sizePixel');
+const btnRandomColor = document.querySelector('.randomColor');
+const resetBtn = document.querySelector('.reset');
 
 grid();
 
-function grid(size=23){
+//заполнение контейнера сеткой 
+function grid(size=45){
     for (let i=0; i<size*size; i++){
         const divGrid = document.createElement('div');
     
@@ -10,7 +14,7 @@ function grid(size=23){
         divGrid.style.cssText = `
             width: ${529/size}px;
             height: ${529/size}px;
-            border: 1px solid rgba(137, 81, 41, 0.01);
+            border: 1px solid rgba(137, 81, 41, 0.02);
             box-sizing: border-box;
         `;
         divConteiner.appendChild(divGrid);
@@ -18,13 +22,12 @@ function grid(size=23){
 
     const hover = document.querySelector('div');
     hover.addEventListener('mouseover', function(e){
-    e.target.style.backgroundColor = 'pink';
+    e.target.style.backgroundColor = '#808080';
     });
+
 };
 
-
-const btnSizePixel = document.querySelector('.sizePixel');
-
+// получение нового размера сетки от пользователя
 btnSizePixel.addEventListener('click', () =>{
     size = prompt('Выводите новый размер:');
     if(size<=100){
@@ -37,15 +40,15 @@ btnSizePixel.addEventListener('click', () =>{
     }    
 });
 
+// удаление текущего  сетки  
 function deleteGrid() {
-  
     let divLastGrid = document.querySelector('.conteiner');
     while (divLastGrid.firstChild) {
         divLastGrid.removeChild(divLastGrid.firstChild);
-};
-    
+    };
 };
 
+// создание новой сетки для изменение масштаба сетки 
 function newGrid(newSize){
     for (let i=0; i<newSize*newSize; i++){
         const divGrid = document.createElement('div');
@@ -54,7 +57,7 @@ function newGrid(newSize){
         divGrid.style.cssText = `
             width: ${529/newSize}px;
             height: ${529/newSize}px;
-            border: 1px solid rgba(137, 81, 41, 0.05);
+            border: 1px solid rgba(137, 81, 41, 0.02);
             box-sizing: border-box;
         `;
         divConteiner.appendChild(divGrid);
@@ -62,19 +65,18 @@ function newGrid(newSize){
 
     const hover = document.querySelector('div');
     hover.addEventListener('mouseover', function(e){
-    e.target.style.backgroundColor = 'pink';
+    e.target.style.backgroundColor = '#808080';
     });
 }
 
-
-const btnRandomColor = document.querySelector('.randomColor');
+// изминение цвета крусора на случайный цвет
 btnRandomColor.addEventListener('click', () => {
     const hoverRandom = document.querySelector('div');
     const randomRgbColor = () => {
-        const red = Math.floor(Math.random() * 256) // Random number between 0-255
+        const red = Math.floor(Math.random() * 256)
         const green = Math.floor(Math.random() * 256)
         const blue = Math.floor(Math.random() * 256)
-        return `rgb(${red}, ${green}, ${blue})`
+        return `rgb(${red}, ${green}, ${blue})`;
     }
     hoverRandom.addEventListener('mouseover', function(e){
     e.target.style.backgroundColor = randomRgbColor();
@@ -82,4 +84,11 @@ btnRandomColor.addEventListener('click', () => {
 });
 
 
- 
+// очистка сетки  
+resetBtn.addEventListener('click', () => {
+    const grid = divConteiner.querySelectorAll('div')
+    console.log(grid);
+    grid.forEach((grid) => {
+        grid.style.backgroundColor = '#F0FFF0';
+    })
+});
